@@ -26,7 +26,7 @@ dependencies:
   webview_flutter: ^1.0.7
 
   # Plugins for rendering the <audio> tag.
-  chewie_audio: ^1.1.2
+  #chewie_audio: ^1.1.2
 
   # Plugins for rendering the <svg> tag.
   #flutter_svg: ^0.20.0-nullsafety.3

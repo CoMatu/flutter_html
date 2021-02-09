@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:chewie/chewie.dart';
-import 'package:chewie_audio/chewie_audio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -149,17 +148,6 @@ class AudioContentElement extends ReplacedElement {
   Widget toWidget(RenderContext context) {
     return Container(
       width: context.style.width ?? 300,
-      child: ChewieAudio(
-        controller: ChewieAudioController(
-          videoPlayerController: VideoPlayerController.network(
-            src.first ?? "",
-          ),
-          autoPlay: autoplay,
-          looping: loop,
-          showControls: showControls,
-          autoInitialize: true,
-        ),
-      ),
     );
   }
 }
