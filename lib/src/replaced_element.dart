@@ -9,7 +9,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_html/html_parser.dart';
 import 'package:flutter_html/src/html_elements.dart';
 import 'package:flutter_html/style.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -218,7 +217,7 @@ class VideoContentElement extends ReplacedElement {
 }
 
 /// [SvgContentElement] is a [ReplacedElement] with an SVG as its contents.
-class SvgContentElement extends ReplacedElement {
+/* class SvgContentElement extends ReplacedElement {
   final String data;
   final double width;
   final double height;
@@ -237,7 +236,7 @@ class SvgContentElement extends ReplacedElement {
       height: height,
     );
   }
-}
+} */
 
 class EmptyContentElement extends ReplacedElement {
   EmptyContentElement({String name = "empty"}) : super(name: name);
@@ -358,12 +357,12 @@ ReplacedElement parseReplacedElement(
         height: double.tryParse(element.attributes['height'] ?? ""),
         node: element,
       );
-    case "svg":
+/*     case "svg":
       return SvgContentElement(
         data: element.outerHtml,
         width: double.tryParse(element.attributes['width'] ?? ""),
         height: double.tryParse(element.attributes['height'] ?? ""),
-      );
+      ); */
     case "ruby":
       return RubyElement(
         element: element,
