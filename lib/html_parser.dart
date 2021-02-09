@@ -9,7 +9,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/image_render.dart';
 import 'package:flutter_html/src/css_parser.dart';
 import 'package:flutter_html/src/html_elements.dart';
-import 'package:flutter_html/src/layout_element.dart';
 import 'package:flutter_html/src/utils.dart';
 import 'package:flutter_html/style.dart';
 import 'package:html/dom.dart' as dom;
@@ -151,12 +150,6 @@ class HtmlParser extends StatelessWidget {
         return parseInteractableElement(node, children);
       } else if (REPLACED_ELEMENTS.contains(node.localName)) {
         return parseReplacedElement(node, navigationDelegateForIframe);
-      } else if (LAYOUT_ELEMENTS.contains(node.localName)) {
-        return parseLayoutElement(node, children);
-      } else if (TABLE_CELL_ELEMENTS.contains(node.localName)) {
-        return parseTableCellElement(node, children);
-      } else if (TABLE_DEFINITION_ELEMENTS.contains(node.localName)) {
-        return parseTableDefinitionElement(node, children);
       } else if (customRenderTags.contains(node.localName)) {
         return parseStyledElement(node, children);
       } else {
@@ -381,10 +374,6 @@ class HtmlParser extends StatelessWidget {
                   newContext.style.generateTextStyle().merge(childSpan.style));
             }).toList() ??
             [],
-      );
-    } else if (tree is LayoutElement) {
-      return WidgetSpan(
-        child: tree.toWidget(context),
       );
     } else if (tree.style.verticalAlign != null &&
         tree.style.verticalAlign != VerticalAlign.BASELINE) {
@@ -663,7 +652,7 @@ class HtmlParser extends StatelessWidget {
     List<StyledElement> toRemove = new List<StyledElement>();
     bool lastChildBlock = true;
     tree.children?.forEach((child) {
-      if (child is EmptyContentElement || child is EmptyLayoutElement) {
+      if (child is EmptyContentElement) {
         toRemove.add(child);
       } else if (child is TextContentElement && (child.text.isEmpty)) {
         toRemove.add(child);
